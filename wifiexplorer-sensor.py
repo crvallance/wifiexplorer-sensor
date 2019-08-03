@@ -60,12 +60,12 @@ lock = threading.Lock()
 
 def error(message):
     if message:
-        print '> (error) {0}'.format(message)
+        print(('> (error) {0}'.format(message)))
 
 
 def info(message):
     if message:
-        print '> (info) {0}'.format(message)
+        print(('> (info) {0}'.format(message)))
 
 
 def packet_handler(p):
@@ -170,7 +170,7 @@ def signal_handler(signal, frame):
 if __name__ == "__main__":
 
     if os.geteuid() != 0:
-        print "You need to have root privileges to run this script."
+        print("You need to have root privileges to run this script.")
         sys.exit(-1)
 
     if len(sys.argv) < 2:
@@ -218,7 +218,7 @@ if __name__ == "__main__":
                             found = networks.copy()
                             networks.clear()
                             lock.release()
-                            conn.sendall(struct.pack("!I", len(found.keys())))
+                            conn.sendall(struct.pack("!I", len(list(found.keys()))))
                             for key in found:
                                 conn.sendall(struct.pack("!I", len(found[key])) + str(found[key]))
                         else:
