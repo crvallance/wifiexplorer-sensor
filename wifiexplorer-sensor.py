@@ -97,7 +97,9 @@ def channel_to_frequency(ch):
 
 def channel_hopper():
     global count
-
+    # Adjust encoding if using python3
+    if not isinstance(interface, bytes):
+        interface = interface.encode('utf8')
     # Get the index of the interface
     pack = struct.pack('16sI', interface, 0)
     sk = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
